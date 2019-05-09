@@ -43,7 +43,7 @@ export class UserController{
         userClass.getUserInfo(user);   
         
         //class to json 直接输出
-        let jsonData =  userClass.getUserInfoJson(user);  
+        let JsonData =  userClass.getUserInfoJson(user);  
 
         if(user.userid ==enumMessage.outcode )
         {

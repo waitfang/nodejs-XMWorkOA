@@ -48,7 +48,7 @@ let UserController = class UserController {
         //call 逻辑处理部分
         user_1.userClass.getUserInfo(user);
         //class to json 直接输出
-        let jsonData = user_1.userClass.getUserInfoJson(user);
+        let JsonData = user_1.userClass.getUserInfoJson(user);
         if (user.userid == EnumMessage_1.enumMessage.outcode) {
             res.json(JSON.parse(jsonData));
         }
