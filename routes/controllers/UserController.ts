@@ -47,7 +47,7 @@ export class UserController{
 
         if(user.userid ==enumMessage.outcode )
         {
-            res.json(JSON.parse(jsonData));
+            res.json(JSON.parse(JsonData));
         }
         else
         {
