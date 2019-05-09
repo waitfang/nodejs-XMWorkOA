@@ -14,7 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const ExpressDecrorators_1 = require("../class/ExpressDecrorators");
 const express_1 = __importDefault(require("express"));
-const enumMessage_1 = require("../enum/enumMessage");
+const EnumMessage_1 = require("../enum/EnumMessage");
 const user_1 = require("../class/user");
 let UserController = class UserController {
     /**
@@ -26,8 +26,8 @@ let UserController = class UserController {
      */
     static getUserInfo(req, res, next) {
         res.json({
-            code: enumMessage_1.enumMessage.Returncode,
-            message: enumMessage_1.enumMessage.Returnmessage,
+            code: EnumMessage_1.enumMessage.Returncode,
+            message: EnumMessage_1.enumMessage.Returnmessage,
             reqkey: req.query.userid,
             reqvalue: req.query.username,
         });
@@ -40,7 +40,7 @@ let UserController = class UserController {
      * @param next
      */
     static Chkuserinfo(req, res, next) {
-        let user = new user_1.userClass(enumMessage_1.enumMessage.userInituserid, enumMessage_1.enumMessage.userInitusername); //需要实例化，所以先给定一个值
+        let user = new user_1.userClass(EnumMessage_1.enumMessage.userInituserid, EnumMessage_1.enumMessage.userInitusername); //需要实例化，所以先给定一个值
         if (req.query.userid != null && req.query.username != null) {
             user.userid = req.query.userid;
             user.username = req.query.username;
@@ -49,13 +49,13 @@ let UserController = class UserController {
         user_1.userClass.getUserInfo(user);
         //class to json 直接输出
         let jsonData = user_1.userClass.getUserInfoJson(user);
-        if (user.userid == enumMessage_1.enumMessage.outcode) {
+        if (user.userid == EnumMessage_1.enumMessage.outcode) {
             res.json(JSON.parse(jsonData));
         }
         else {
             res.json({
-                code: enumMessage_1.enumMessage.Returncode,
-                message: enumMessage_1.enumMessage.Returnmessage,
+                code: EnumMessage_1.enumMessage.Returncode,
+                message: EnumMessage_1.enumMessage.Returnmessage,
                 reqkey: user.userid,
                 reqvalue: user.username,
             });

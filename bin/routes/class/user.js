@@ -10,7 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const base_1 = require("./base");
-const fun_aop_user_1 = require("../function/fun_aop_user"); //引入aop ts  
+const FunAopUser_1 = require("../function/FunAopUser"); //引入aop ts  
 class userClass extends base_1.baseClass {
     constructor(userid, username) {
         super(200, true, "constructor"); //调用父类的构造函数，需要初始化
@@ -43,11 +43,11 @@ class userClass extends base_1.baseClass {
     }
 }
 __decorate([
-    fun_aop_user_1.beforeChkuserinfo(),
+    FunAopUser_1.beforeChkuserinfo(),
     __metadata("design:type", Object)
 ], userClass.prototype, "getUserInfo2", void 0);
 __decorate([
-    fun_aop_user_1.beforeChkuserinfo(),
+    FunAopUser_1.beforeChkuserinfo(),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [userClass]),
     __metadata("design:returntype", userClass)

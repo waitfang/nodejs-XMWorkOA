@@ -3,7 +3,7 @@
 //创建时间：2019/04/27
 
 import express, { Request, Response, NextFunction } from 'express';
-import {enumMessage} from '../enum/enumMessage';
+import {enumMessage} from '../enum/EnumMessage';
 import fs from 'fs';
 import { json } from 'body-parser';
 let resource = "public\\resource\\resource.json";//文本信息放入json档

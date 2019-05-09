@@ -66,4 +66,4 @@ function fsreadFileSync() {
     return mResourceJson;
 }
 exports.fsreadFileSync = fsreadFileSync;
-//# sourceMappingURL=fun_resource.js.map
+//# sourceMappingURL=FunResource.js.map

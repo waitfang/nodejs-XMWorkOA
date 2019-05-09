@@ -5,7 +5,7 @@
 import express, { Request, Response, NextFunction } from 'express';   
 import bodyParser from 'body-parser';
 import log4js from 'log4js' //log4js 日志管理 
-import {fsreadJsonFile,fsreadFileSync}  from  './routes/function/fun_resource';//引入配置档读取功能
+import {fsreadJsonFile,fsreadFileSync}  from  './routes/function/FunResource';//引入配置档读取功能
 import {ExpressDecrorators} from './routes/class/ExpressDecrorators';
 import {UserController} from './routes/controllers/UserController'; 
 import { handler } from './routes/class/handler';

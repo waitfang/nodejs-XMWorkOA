@@ -29,4 +29,4 @@ function funGetuser(param) {
     return param;
 }
 exports.funGetuser = funGetuser;
-//# sourceMappingURL=fun_aop_user.js.map
+//# sourceMappingURL=FunAopUser.js.map

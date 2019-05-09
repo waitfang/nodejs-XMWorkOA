@@ -1,6 +1,6 @@
 import { ExpressDecrorators } from "../class/ExpressDecrorators";
 import express from 'express';
-import {enumMessage} from '../enum/enumMessage';
+import {enumMessage} from '../enum/EnumMessage';
 import { NextFunction } from "connect";
 import {userClass} from "../class/user"; 
 import { json } from "body-parser";

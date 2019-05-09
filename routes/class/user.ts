@@ -5,7 +5,7 @@
  */ 
 import { stringify } from "querystring"; 
 import {baseClass} from './base'
-import {beforeChkuserinfo}  from "../function/fun_aop_user";  //引入aop ts  
+import {beforeChkuserinfo}  from "../function/FunAopUser";  //引入aop ts  
 
 export class userClass extends baseClass{ 
     userid:number; 

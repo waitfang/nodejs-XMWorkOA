@@ -1,5 +1,5 @@
 import { baseClass } from "./base";
-import {enumMessage} from '../enum/enumMessage'
+import {enumMessage} from '../enum/EnumMessage'
 
 export class handler extends baseClass{
 

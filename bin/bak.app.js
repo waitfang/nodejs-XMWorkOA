@@ -8,7 +8,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const user_1 = require("./routes/class/user");
-const fun_aop_user_1 = require("./routes/function/fun_aop_user");
+const FunAopUser_1 = require("./routes/function/FunAopUser");
 let Rs = require('./routes/controllers/_resource'); //引入配置档读取功能
 let app = express_1.default();
 let mResourceJson = Rs.fsreadFile.fsreadFile(); //调用resource公开的接口
@@ -25,7 +25,7 @@ app.all("/user", function (req, res, next) {
     let userBack = user_1.userClass.getUserInfo(user); //呼叫class的function 　返回值未ｎｕｌｌ
     let userBack2 = user.getUserInfo2(user); //呼叫class的function 有返回值
     console.log("app callback = " + userBack + "　app userBack2 = " + userBack2);
-    let funUser = fun_aop_user_1.funGetuser(user);
+    let funUser = FunAopUser_1.funGetuser(user);
     res.send({ id: userBack2.userid, name: userBack2.username });
 });
 app.listen(listenPort, listenIP);

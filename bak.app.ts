@@ -4,7 +4,7 @@
 
 import express, { Request, Response, NextFunction } from 'express';  
 import  {userClass} from './routes/class/user';
-import {funGetuser, beforeChkuserinfo} from './routes/function/fun_aop_user';
+import {funGetuser, beforeChkuserinfo} from './routes/function/FunAopUser';
 let Rs  =  require('./routes/controllers/_resource');//引入配置档读取功能
 let app = express();
 

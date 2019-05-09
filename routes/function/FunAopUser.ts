@@ -4,7 +4,7 @@
  
 import {userClass} from '../class/user'; 
 import { stringify } from 'querystring';
-import {enumMessage} from  "../enum/enumMessage";
+import {enumMessage} from  "../enum/EnumMessage";
   
 /**
  * aop checked 用户名称
