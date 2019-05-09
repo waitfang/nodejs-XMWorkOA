@@ -26,4 +26,4 @@ var ReturnBoolean;
     ReturnBoolean["No"] = "false";
     ReturnBoolean["Yes"] = "true";
 })(ReturnBoolean = exports.ReturnBoolean || (exports.ReturnBoolean = {}));
-//# sourceMappingURL=enumMessage.js.map
+//# sourceMappingURL=EnumMessage.js.map

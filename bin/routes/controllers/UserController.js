@@ -50,7 +50,7 @@ let UserController = class UserController {
         //class to json 直接输出
         let JsonData = user_1.userClass.getUserInfoJson(user);
         if (user.userid == EnumMessage_1.enumMessage.outcode) {
-            res.json(JSON.parse(jsonData));
+            res.json(JSON.parse(JsonData));
         }
         else {
             res.json({

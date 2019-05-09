@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const ActionMethod_1 = require("../enum/ActionMethod");
 /**
  * 功能说明：路由选择器
  * 作者:ricky
@@ -38,19 +39,19 @@ class ExpressDecrorators {
         };
     }
     static ALL() {
-        return ExpressDecrorators.router("all");
+        return ExpressDecrorators.router(ActionMethod_1.ActionMethod.all);
     }
     static POST() {
-        return ExpressDecrorators.router("post");
+        return ExpressDecrorators.router(ActionMethod_1.ActionMethod.post);
     }
     static GET() {
-        return ExpressDecrorators.router("get");
+        return ExpressDecrorators.router(ActionMethod_1.ActionMethod.get);
     }
     static PUT() {
-        return ExpressDecrorators.router("put");
+        return ExpressDecrorators.router(ActionMethod_1.ActionMethod.put);
     }
     static DELETE() {
-        return ExpressDecrorators.router("delete");
+        return ExpressDecrorators.router(ActionMethod_1.ActionMethod.delete);
     }
     static router(method) {
         return (target, name, descriptor) => {

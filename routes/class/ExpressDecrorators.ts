@@ -1,4 +1,5 @@
 import express from "express";
+import {ActionMethod} from '../enum/ActionMethod';
 /**
  * 功能说明：路由选择器
  * 作者:ricky
@@ -15,7 +16,7 @@ export class ExpressDecrorators {
     };
 
     private static controllerPath: Map<any, string> = new Map<any, string>();
-    private static controllerActions: Map<any, { method: "all" | "get" | "post" | "put" | "delete", actionName: string, func: any }[]> = new Map<any, { method: "all" | "get" | "post" | "put" | "delete", actionName: string, func: any }[]>();
+    private static controllerActions: Map<any, { method: ActionMethod, actionName: string, func: any }[]> = new Map<any, { method: ActionMethod, actionName: string, func: any }[]>();
 
     private static setExpressRouter(target: any, path: string) {
         let controllerActions = ExpressDecrorators.controllerActions.get(target);
@@ -44,22 +45,22 @@ export class ExpressDecrorators {
     }
 
     static ALL() {
-        return ExpressDecrorators.router("all");
+        return ExpressDecrorators.router(ActionMethod.all);
     }
     static POST() {
-        return ExpressDecrorators.router("post");
+        return ExpressDecrorators.router(ActionMethod.post);
     }
     static GET() {
-        return ExpressDecrorators.router("get");
+        return ExpressDecrorators.router(ActionMethod.get);
     }
     static PUT() {
-        return ExpressDecrorators.router("put");
+        return ExpressDecrorators.router(ActionMethod.put);
     }
     static DELETE() {
-        return ExpressDecrorators.router("delete");
+        return ExpressDecrorators.router(ActionMethod.delete);
     }
 
-    static router(method: "all" | "get" | "post" | "put" | "delete") {
+    static router(method: ActionMethod) {
         return (target: any, name: string, descriptor: PropertyDescriptor) => {
             let controllerActions = ExpressDecrorators.controllerActions.get(target);
             if (!controllerActions) {

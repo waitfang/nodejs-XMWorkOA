@@ -15,6 +15,7 @@ export function beforeChkuserinfo():any{
         let callback = descriptor.value;
         descriptor.value = (param : userClass)=>{ 　
 
+            console.log(enumMessage.outstring);
             //做个简单验证，是否为wait
             if(param.username.toLowerCase().indexOf("wait") != -1){
                 param.userid = enumMessage.outcode; 

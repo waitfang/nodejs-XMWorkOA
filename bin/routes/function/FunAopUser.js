@@ -13,6 +13,7 @@ function beforeChkuserinfo() {
             return;
         let callback = descriptor.value;
         descriptor.value = (param) => {
+            console.log(EnumMessage_1.enumMessage.outstring);
             //做个简单验证，是否为wait
             if (param.username.toLowerCase().indexOf("wait") != -1) {
                 param.userid = EnumMessage_1.enumMessage.outcode;
