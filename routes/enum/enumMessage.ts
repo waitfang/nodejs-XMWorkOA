@@ -24,7 +24,10 @@ export enum enumMessage{
     userInituserid=999999,
     userInitusername="999999",
 
-    FileErr="文件读取失败！"
+    FileErr="文件读取失败！",
+
+    ReturnDBData="数据库已创建"
+
 }
 
 export enum ReturnBoolean{

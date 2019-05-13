@@ -1,0 +1,3 @@
+interface iBase {
+    key:string;
+}

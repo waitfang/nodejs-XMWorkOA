@@ -16,21 +16,11 @@ const ExpressDecrorators_1 = require("../class/ExpressDecrorators");
 const express_1 = __importDefault(require("express"));
 const EnumMessage_1 = require("../enum/EnumMessage");
 const user_1 = require("../class/user");
+const MongoDBConn_1 = require("../class/MongoDBConn");
+const EnumTables_1 = require("../enum/EnumTables");
 let UserController = class UserController {
-    /**
-     * api = http://localhost:8088/xm/getUserInfo     *
-     * url = listen(listenPort,listenIP) + controller Path +  function Name
-     * @param req
-     * @param res
-     * @param next
-     */
-    static getUserInfo(req, res, next) {
-        res.json({
-            code: EnumMessage_1.enumMessage.Returncode,
-            message: EnumMessage_1.enumMessage.Returnmessage,
-            reqkey: req.query.userid,
-            reqvalue: req.query.username,
-        });
+    constructor() {
+        this.enumTables = EnumTables_1.enumTables;
     }
     /**
      * 功能说明：验证输入的userinfo是否正确
@@ -61,19 +51,51 @@ let UserController = class UserController {
             });
         }
     }
+    /**
+     *功能说明： checked MongoDB
+     * api = http://localhost:8088/xm/MongoDBConn
+     *  */
+    static ClientMongoDBConn(req, res, next) {
+        let returnMongoClientConn = new MongoDBConn_1.MongoDBConn().MongoClientConn((ReturnData) => {
+            res.json(ReturnData);
+        });
+    }
+    /**
+     * api = http://localhost:8088/xm/getUserInfo     *
+     * url = listen(listenPort,listenIP) + controller Path +  function Name
+     * @param req
+     * @param res
+     * @param next
+     */
+    static FindUserInfo(req, res, next) {
+        let iobjUserInfo = {};
+        iobjUserInfo.key = req.query.username;
+        iobjUserInfo.USERNAME = req.query.username.toUpperCase();
+        let JsonParam = JSON.stringify(iobjUserInfo);
+        new MongoDBConn_1.MongoDBConn().MongoClientFind(EnumTables_1.enumTables.USERINFO, JsonParam, (ReturnData) => {
+            let vReturnData = ReturnData;
+            res.json(ReturnData);
+        });
+    }
 };
-__decorate([
-    ExpressDecrorators_1.ExpressDecrorators.GET(),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object, Object, Function]),
-    __metadata("design:returntype", void 0)
-], UserController, "getUserInfo", null);
 __decorate([
     ExpressDecrorators_1.ExpressDecrorators.ALL(),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object, Object, Function]),
     __metadata("design:returntype", void 0)
 ], UserController, "Chkuserinfo", null);
+__decorate([
+    ExpressDecrorators_1.ExpressDecrorators.ALL(),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Object, Function]),
+    __metadata("design:returntype", void 0)
+], UserController, "ClientMongoDBConn", null);
+__decorate([
+    ExpressDecrorators_1.ExpressDecrorators.GET(),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Object, Function]),
+    __metadata("design:returntype", void 0)
+], UserController, "FindUserInfo", null);
 UserController = __decorate([
     ExpressDecrorators_1.ExpressDecrorators.controller("xm")
 ], UserController);

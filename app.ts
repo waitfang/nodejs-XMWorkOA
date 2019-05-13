@@ -8,7 +8,6 @@ import log4js, { levels } from 'log4js' //log4js 日志管理
 import {fsreadJsonFile,fsreadFileSync}  from  './routes/function/FunConfig';//引入配置档读取功能
 import {ExpressDecrorators} from './routes/class/ExpressDecrorators';
 import {UserController} from './routes/controllers/UserController'; 
-import { handler } from './routes/class/handler';
 import {enumMessage} from './routes/enum/EnumMessage';
 import {ReadFileConfig} from './routes/class/ReadFileConfig';
 

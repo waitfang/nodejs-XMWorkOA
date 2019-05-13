@@ -21,6 +21,7 @@ var enumMessage;
     enumMessage[enumMessage["userInituserid"] = 999999] = "userInituserid";
     enumMessage["userInitusername"] = "999999";
     enumMessage["FileErr"] = "\u6587\u4EF6\u8BFB\u53D6\u5931\u8D25\uFF01";
+    enumMessage["ReturnDBData"] = "\u6570\u636E\u5E93\u5DF2\u521B\u5EFA";
 })(enumMessage = exports.enumMessage || (exports.enumMessage = {}));
 var ReturnBoolean;
 (function (ReturnBoolean) {
