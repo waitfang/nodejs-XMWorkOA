@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /**
- * 功能说明：测试的message写到这里。
+ * 功能说明：DB相关。
  */
 var enumTables;
 (function (enumTables) {

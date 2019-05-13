@@ -1,5 +1,5 @@
 /**
- * 功能说明：测试的message写到这里。
+ * 功能说明：DB相关。
  */
 export enum enumTables{ 
     myMongoDB="myMongoDB",
