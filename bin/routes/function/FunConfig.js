@@ -8,7 +8,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const fs_1 = __importDefault(require("fs"));
-let resource = "public\\resource\\resource.json"; //文本信息放入json档
+let resource = "public\\resource\\config.json"; //文本信息放入json档
+let config = '../../public/resource/config.json';
 var mResourceJson;
 let app = express_1.default();
 // exports 和 require 两个对象，其中 exports 是模块公开的接口，require 用于从外部获取一个模块的接口
@@ -32,4 +33,4 @@ function fsreadFileSync() {
     return mResourceJson;
 }
 exports.fsreadFileSync = fsreadFileSync;
-//# sourceMappingURL=FunResource.js.map
+//# sourceMappingURL=FunConfig.js.map

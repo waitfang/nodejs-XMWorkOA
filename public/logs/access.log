@@ -27,3 +27,7 @@
 [2019-05-09T12:18:40.341] [INFO] default - 127.0.0.1 - - "GET /xm/Chkuserinfo?userid=1123456&username=DEMO%20%20test HTTP/1.1" 200 83 "" "PostmanRuntime/7.11.0"
 [2019-05-09T12:18:46.108] [INFO] default - 127.0.0.1 - - "GET /xm/Chkuserinfo?userid=1123456&username=DEMO%20%20wait HTTP/1.1" 200 97 "" "PostmanRuntime/7.11.0"
 [2019-05-09T12:18:51.944] [INFO] default - 127.0.0.1 - - "GET /xm/getUserInfo?userid=111112&username=wait%20%20test HTTP/1.1" 200 82 "" "PostmanRuntime/7.11.0"
+[2019-05-09T18:31:18.182] [INFO] default - 127.0.0.1 - - "GET /xm/getUserInfo?userid=111112&username=wait%20%20test HTTP/1.1" 200 82 "" "PostmanRuntime/7.11.0"
+[2019-05-09T18:31:25.456] [INFO] default - 127.0.0.1 - - "GET /xm/getUserInfo?userid=111112&username=wait%20%20test HTTP/1.1" 200 82 "" "PostmanRuntime/7.11.0"
+[2019-05-09T18:31:31.150] [INFO] default - 127.0.0.1 - - "GET /xm/Chkuserinfo?userid=1123456&username=DEMO%20%20wait HTTP/1.1" 200 97 "" "PostmanRuntime/7.11.0"
+[2019-05-09T18:31:34.141] [INFO] default - 127.0.0.1 - - "GET /xm/Chkuserinfo?userid=1123456&username=DEMO HTTP/1.1" 200 77 "" "PostmanRuntime/7.11.0"

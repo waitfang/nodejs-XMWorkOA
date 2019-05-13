@@ -8,12 +8,17 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const log4js_1 = __importDefault(require("log4js")); //log4js 日志管理 
-const FunResource_1 = require("./routes/function/FunResource"); //引入配置档读取功能
+const FunConfig_1 = require("./routes/function/FunConfig"); //引入配置档读取功能
 const ExpressDecrorators_1 = require("./routes/class/ExpressDecrorators");
 const UserController_1 = require("./routes/controllers/UserController");
+const ReadFileConfig_1 = require("./routes/class/ReadFileConfig");
 // fsreadJsonFile();//异步读取json配置
-let mResourceJson = FunResource_1.fsreadFileSync(); //同步读取
-let listenIP = mResourceJson.listenIP; // //监听ip和端口 "localhost";
+let mPromise = ReadFileConfig_1.ReadFileConfig.ReadFileConfig();
+mPromise.then((data) => {
+    let mResourceJson = data;
+});
+let mResourceJson = FunConfig_1.fsreadFileSync(); //同步读取
+let listenIP = mResourceJson.listenIP; //监听ip和端口 "localhost";
 let listenPort = mResourceJson.listenPort; //8088; 
 let log4jsConfigure = "public\\resource\\log4js.json"; //log4js 配置文件
 log4js_1.default.configure(log4jsConfigure);

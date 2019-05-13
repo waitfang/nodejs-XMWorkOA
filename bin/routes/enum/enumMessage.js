@@ -20,6 +20,7 @@ var enumMessage;
     /**构造函数需要一个初始化值 */
     enumMessage[enumMessage["userInituserid"] = 999999] = "userInituserid";
     enumMessage["userInitusername"] = "999999";
+    enumMessage["FileErr"] = "\u6587\u4EF6\u8BFB\u53D6\u5931\u8D25\uFF01";
 })(enumMessage = exports.enumMessage || (exports.enumMessage = {}));
 var ReturnBoolean;
 (function (ReturnBoolean) {

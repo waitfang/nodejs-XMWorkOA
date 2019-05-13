@@ -22,7 +22,9 @@ export enum enumMessage{
 
     /**构造函数需要一个初始化值 */
     userInituserid=999999,
-    userInitusername="999999"
+    userInitusername="999999",
+
+    FileErr="文件读取失败！"
 }
 
 export enum ReturnBoolean{
