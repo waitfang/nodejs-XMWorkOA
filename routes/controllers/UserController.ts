@@ -74,15 +74,15 @@ export class UserController{
      * @param res 
      * @param next 
      */
-    @ExpressDecrorators.ALL()
+    @ExpressDecrorators.POST()
     static InsertOneUserInfo(req:express.Request,res:express.Response,next :express.NextFunction){
         let objUserInfo = <iUserInfo>{};         
-        objUserInfo.USERID = req.query.userid;
-        objUserInfo.USERNAME = req.query.username.toUpperCase(); 
-        objUserInfo.USERPASSWORD = req.query.userpassword;
-        objUserInfo.EMAIL=req.query.username+"@gmail.com";
-        objUserInfo.COMPANYID =  req.query.companyid;
-        objUserInfo.COMPANYNAME = req.query.companyname;
+        objUserInfo.USERID = req.body.userid;
+        objUserInfo.USERNAME = req.body.username.toUpperCase(); 
+        objUserInfo.USERPASSWORD = req.body.userpassword;
+        objUserInfo.EMAIL=req.body.username+"@gmail.com";
+        objUserInfo.COMPANYID =  req.body.companyid;
+        objUserInfo.COMPANYNAME = req.body.companyname;
         objUserInfo.CREATETIME = new Date();
         objUserInfo.CREATEUSER="system"
         objUserInfo.REMARKS = "system";
@@ -100,7 +100,7 @@ export class UserController{
      * @param res 
      * @param next 
      */
-    @ExpressDecrorators.ALL()
+    @ExpressDecrorators.DEL()
     static DeleteOneUserInfo(req:express.Request,res:express.Response,next :express.NextFunction){
         let objUserInfo = <iUserInfo>{}; 
         objUserInfo.USERNAME = req.query.username.toUpperCase();  
