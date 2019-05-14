@@ -38,10 +38,7 @@ class MongoDBConn {
             if (err)
                 throw err;
             let db = client.db(this.enumTables.myMongoDB);
-            let WhereParam = JSON.parse(StrWhereParam.toString()); //按条件查询 
-            if (WhereParam.key == "")
-                WhereParam = {}; //没有传入key，就查全部的
-            delete WhereParam.key; //key只做判断用，不能用作where条件
+            let WhereParam = this.FunWhereParam(StrWhereParam);
             db.collection(enumTables).find(WhereParam).toArray(function (err, ResultData) {
                 if (err)
                     throw err;
@@ -52,6 +49,22 @@ class MongoDBConn {
         });
     }
     ;
+    /**
+     *功能说明： 检查where条件是否有模糊查询，设定模糊查询
+     */
+    FunWhereParam(StrWhereParam) {
+        let WhereParam = JSON.parse(StrWhereParam.toString()); //按条件查询 
+        if (WhereParam.key == "")
+            WhereParam = {}; //没有传入key，就查全部的
+        delete WhereParam.key; //key只做判断用，不能用作where条件
+        for (let Param in WhereParam) {
+            let paramValue = WhereParam[Param];
+            if (paramValue.indexOf(this.enumTables.regex) != -1) {
+                WhereParam[Param] = new RegExp(paramValue.replace(this.enumTables.regex, "").toUpperCase()); //不区分大小写 实现模糊查询 
+            }
+        }
+        return WhereParam;
+    }
 }
 exports.MongoDBConn = MongoDBConn;
 //# sourceMappingURL=MongoDBConn.js.map

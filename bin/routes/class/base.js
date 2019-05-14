@@ -16,4 +16,4 @@ class baseClass {
 }
 exports.baseClass = baseClass;
 ;
-//# sourceMappingURL=base.js.map
+//# sourceMappingURL=Base.js.map

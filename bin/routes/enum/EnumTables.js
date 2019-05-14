@@ -8,5 +8,6 @@ var enumTables;
     enumTables["myMongoDB"] = "myMongoDB";
     enumTables["USERINFO"] = "USERINFO";
     enumTables["COMPANYINFO"] = "COMPANYINFO";
+    enumTables["regex"] = "$regex:"; //设置查询栏位需要模糊查询
 })(enumTables = exports.enumTables || (exports.enumTables = {}));
 //# sourceMappingURL=EnumTables.js.map

@@ -27,8 +27,8 @@ export class UserController{
             user.username = req.query.username;
         }
         //call 逻辑处理部分
-        userClass.getUserInfo(user);   
-        
+        userClass.getUserInfo(user);  
+                
         //class to json 直接输出
         let JsonData =  userClass.getUserInfoJson(user);  
 
@@ -73,13 +73,15 @@ export class UserController{
     static FindUserInfo(req:express.Request,res:express.Response,next :express.NextFunction){
         let iobjUserInfo:iUserInfo = <iUserInfo>{}; 
         iobjUserInfo.key= req.query.username;
-        iobjUserInfo.USERNAME=  req.query.username.toUpperCase();
+        iobjUserInfo.USERNAME=  enumTables.regex + req.query.username.toUpperCase(); //enumTables.regex  设定栏位是否需要模糊查询
 
        let JsonParam =   JSON.stringify(iobjUserInfo);
-       new MongoDBConn().MongoClientFind(enumTables.USERINFO ,JsonParam,(ReturnData:JSON)=>{
+       new MongoDBConn<iUserInfo>().MongoClientFind(enumTables.USERINFO ,JsonParam,(ReturnData:JSON)=>{
            let vReturnData :JSON = ReturnData;
            res.json(ReturnData);
        });
     }
+
+    
     
 }

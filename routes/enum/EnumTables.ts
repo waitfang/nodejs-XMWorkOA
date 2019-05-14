@@ -4,7 +4,9 @@
 export enum enumTables{ 
     myMongoDB="myMongoDB",
     USERINFO="USERINFO",
-    COMPANYINFO="COMPANYINFO"
+    COMPANYINFO="COMPANYINFO",
 
+
+    regex ="$regex:" //设置查询栏位需要模糊查询
 }
  

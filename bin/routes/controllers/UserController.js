@@ -15,7 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const ExpressDecrorators_1 = require("../class/ExpressDecrorators");
 const express_1 = __importDefault(require("express"));
 const EnumMessage_1 = require("../enum/EnumMessage");
-const user_1 = require("../class/user");
+const UserClass_1 = require("../class/UserClass");
 const MongoDBConn_1 = require("../class/MongoDBConn");
 const EnumTables_1 = require("../enum/EnumTables");
 let UserController = class UserController {
@@ -30,15 +30,15 @@ let UserController = class UserController {
      * @param next
      */
     static Chkuserinfo(req, res, next) {
-        let user = new user_1.userClass(EnumMessage_1.enumMessage.userInituserid, EnumMessage_1.enumMessage.userInitusername); //需要实例化，所以先给定一个值
+        let user = new UserClass_1.userClass(EnumMessage_1.enumMessage.userInituserid, EnumMessage_1.enumMessage.userInitusername); //需要实例化，所以先给定一个值
         if (req.query.userid != null && req.query.username != null) {
             user.userid = req.query.userid;
             user.username = req.query.username;
         }
         //call 逻辑处理部分
-        user_1.userClass.getUserInfo(user);
+        UserClass_1.userClass.getUserInfo(user);
         //class to json 直接输出
-        let JsonData = user_1.userClass.getUserInfoJson(user);
+        let JsonData = UserClass_1.userClass.getUserInfoJson(user);
         if (user.userid == EnumMessage_1.enumMessage.outcode) {
             res.json(JSON.parse(JsonData));
         }
@@ -70,7 +70,7 @@ let UserController = class UserController {
     static FindUserInfo(req, res, next) {
         let iobjUserInfo = {};
         iobjUserInfo.key = req.query.username;
-        iobjUserInfo.USERNAME = req.query.username.toUpperCase();
+        iobjUserInfo.USERNAME = EnumTables_1.enumTables.regex + req.query.username.toUpperCase(); //enumTables.regex  设定栏位是否需要模糊查询
         let JsonParam = JSON.stringify(iobjUserInfo);
         new MongoDBConn_1.MongoDBConn().MongoClientFind(EnumTables_1.enumTables.USERINFO, JsonParam, (ReturnData) => {
             let vReturnData = ReturnData;
