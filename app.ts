@@ -11,10 +11,10 @@ import {UserController} from './routes/controllers/UserController';
 import {ReadFileConfig} from './routes/class/ReadFileConfig';
 
 // fsreadJsonFile();//异步读取json配置
-let mPromise =  ReadFileConfig.ReadFileConfig();
-mPromise.then((data)=>{
-    let mResourceJson = data;
-});
+// let mPromise =  ReadFileConfig.ReadFileConfig();
+// mPromise.then((data)=>{
+//     let mResourceJson = data;
+// });
   
 let mResourceJson  = fsreadFileSync();//同步读取
 
@@ -24,6 +24,8 @@ let log4jsConfigure = "public\\resource\\log4js.json";//log4js 配置文件
  
 let app = express(); 
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 // log4js.configure(log4jsConfigure)
 // app.use(log4js.connectLogger(log4js.getLogger("default"), { level: 'auto' }));
 

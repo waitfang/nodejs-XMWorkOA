@@ -1,7 +1,7 @@
 export enum ActionMethod{
     all = "all" ,
     get = "get" ,
-    post =  "post" ,
+    post = "post" , 
     put =  "put" ,
-    delete =  "delete" 
+    delete = "delete" 
 }

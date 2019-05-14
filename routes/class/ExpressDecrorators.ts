@@ -66,7 +66,7 @@ export class ExpressDecrorators {
     static PUT() {
         return ExpressDecrorators.router(ActionMethod.put);
     }
-    static DELETE() {
+    static DEL() {
         return ExpressDecrorators.router(ActionMethod.delete);
     }
 

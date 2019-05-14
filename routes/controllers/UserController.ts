@@ -76,8 +76,7 @@ export class UserController{
      */
     @ExpressDecrorators.ALL()
     static InsertOneUserInfo(req:express.Request,res:express.Response,next :express.NextFunction){
-        let objUserInfo = <iUserInfo>{}; 
-        
+        let objUserInfo = <iUserInfo>{};         
         objUserInfo.USERID = req.query.userid;
         objUserInfo.USERNAME = req.query.username.toUpperCase(); 
         objUserInfo.USERPASSWORD = req.query.userpassword;
