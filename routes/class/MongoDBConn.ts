@@ -6,6 +6,7 @@
 
 import {enumMessage} from '../enum/EnumMessage';
 import {enumTables} from '../enum/EnumTables';
+import { error } from 'util';
 let MongoClient = require('mongodb').MongoClient;
 let url = "mongodb://localhost:27017/myMongoDB";
 
@@ -40,10 +41,10 @@ export class MongoDBConn<T> {
             if (err) throw err;  
             let db = client.db(this.enumTables.myMongoDB); 
             let WhereParam =  this.FunWhereParam(StrWhereParam)
-            db.collection(enumTables).find(WhereParam).toArray(function(err:Error, ResultData:any) {
+            db.collection(enumTables).find(WhereParam).toArray(function(err:Error, ReturnData:any) {
                 if (err) throw err;
-                console.log(ResultData); 
-                callBack(ResultData);//结果返回给回调函数
+                console.log(ReturnData); 
+                callBack(ReturnData);//结果返回给回调函数
             });
             client.close();
         })
@@ -65,6 +66,44 @@ export class MongoDBConn<T> {
         }   
         return WhereParam;
     }
+
+    /**
+     * 功能说明：新增一笔数据
+     * @param enumTables 
+     * @param insertParam 
+     * @param callBack 
+     */
+    MOngoClientInsertOne(enumTables:string,insertParam:JSON,callBack:Function){
+        return MongoClient.connect(url,this.useNewUrlParser,(err:Error,client:any)=>{
+            if(err) throw err;
+            let db = client.db(this.enumTables.myMongoDB);
+            db.collection(enumTables).insertOne(insertParam,(err :Error,ReturnData:any)=>{
+                if(err) throw err;
+                callBack(ReturnData); 
+            })
+            client.close();
+        });
+    }
+
+
+        /**
+     * 功能说明：删除一笔数据
+     * @param enumTables 
+     * @param insertParam 
+     * @param callBack 
+     */
+    MOngoClientdeleteOne(enumTables:string,insertParam:JSON,callBack:Function){
+        return MongoClient.connect(url,this.useNewUrlParser,(err:Error,client:any)=>{
+            if(err) throw err;
+            let db = client.db(this.enumTables.myMongoDB);
+            db.collection(enumTables).deleteOne(insertParam,(err :Error,ReturnData:any)=>{
+                if(err) throw err;
+                callBack(ReturnData); 
+            })
+            client.close();
+        });
+    }
+
     
 }
 

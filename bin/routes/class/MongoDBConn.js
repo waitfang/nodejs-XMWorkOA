@@ -39,11 +39,11 @@ class MongoDBConn {
                 throw err;
             let db = client.db(this.enumTables.myMongoDB);
             let WhereParam = this.FunWhereParam(StrWhereParam);
-            db.collection(enumTables).find(WhereParam).toArray(function (err, ResultData) {
+            db.collection(enumTables).find(WhereParam).toArray(function (err, ReturnData) {
                 if (err)
                     throw err;
-                console.log(ResultData);
-                callBack(ResultData); //结果返回给回调函数
+                console.log(ReturnData);
+                callBack(ReturnData); //结果返回给回调函数
             });
             client.close();
         });
@@ -64,6 +64,44 @@ class MongoDBConn {
             }
         }
         return WhereParam;
+    }
+    /**
+     * 功能说明：新增一笔数据
+     * @param enumTables
+     * @param insertParam
+     * @param callBack
+     */
+    MOngoClientInsertOne(enumTables, insertParam, callBack) {
+        return MongoClient.connect(url, this.useNewUrlParser, (err, client) => {
+            if (err)
+                throw err;
+            let db = client.db(this.enumTables.myMongoDB);
+            db.collection(enumTables).insertOne(insertParam, (err, ReturnData) => {
+                if (err)
+                    throw err;
+                callBack(ReturnData);
+            });
+            client.close();
+        });
+    }
+    /**
+ * 功能说明：删除一笔数据
+ * @param enumTables
+ * @param insertParam
+ * @param callBack
+ */
+    MOngoClientdeleteOne(enumTables, insertParam, callBack) {
+        return MongoClient.connect(url, this.useNewUrlParser, (err, client) => {
+            if (err)
+                throw err;
+            let db = client.db(this.enumTables.myMongoDB);
+            db.collection(enumTables).deleteOne(insertParam, (err, ReturnData) => {
+                if (err)
+                    throw err;
+                callBack(ReturnData);
+            });
+            client.close();
+        });
     }
 }
 exports.MongoDBConn = MongoDBConn;

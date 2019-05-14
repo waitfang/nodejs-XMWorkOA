@@ -1,6 +1,10 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const ActionMethod_1 = require("../enum/ActionMethod");
+const body_parser_1 = __importDefault(require("body-parser"));
 /**
  * 功能说明：路由选择器
  * 作者:ricky
@@ -17,9 +21,17 @@ class ExpressDecrorators {
     static setExpressRouter(target, path) {
         let controllerActions = ExpressDecrorators.controllerActions.get(target);
         if (controllerActions) {
+            //bodyParser 处理
+            let jsonParser = body_parser_1.default.json();
+            let urlencodedParser = body_parser_1.default.urlencoded({
+                extended: true,
+                limit: 1024 * 1024 * 2 // 前端最大可提交数据限制
+            });
             for (let i of controllerActions) {
                 console.log(i.method, `/${path}/${i.actionName}`);
                 ExpressDecrorators._app[i.method](`/${path}/${i.actionName}`, i.func);
+                // ExpressDecrorators._app[i.method](`/${path}/${i.actionName}`,urlencodedParser, i.func);
+                // ExpressDecrorators._app[i.method](`/${path}/${i.actionName}`,jsonParser, i.func); 
             }
         }
         ExpressDecrorators.controllerPath.delete(target);

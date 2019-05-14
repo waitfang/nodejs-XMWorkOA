@@ -12,6 +12,7 @@ import   {enumTables}    from '../enum/EnumTables'
 export class UserController{
  
     private enumTables = enumTables;
+    
     /**
      * 功能说明：验证输入的userinfo是否正确
      * api = http://localhost:8088/xm/Chkuserinfo     * 
@@ -46,8 +47,72 @@ export class UserController{
             });
         }
     }
+ 
+    /**
+     * api = http://localhost:8088/xm/getUserInfo     * 
+     * url = listen(listenPort,listenIP) + controller Path +  function Name 
+     * @param req 
+     * @param res 
+     * @param next 
+     */
+    @ExpressDecrorators.GET()
+    static FindUserInfo(req:express.Request,res:express.Response,next :express.NextFunction){ 
+        let objUserInfo = <iUserInfo>{}; 
+        objUserInfo.key= req.query.username;
+        objUserInfo.USERNAME=  enumTables.regex + req.query.username.toUpperCase(); //enumTables.regex  设定栏位是否需要模糊查询
+
+       let JsonParam =   JSON.stringify(objUserInfo);
+       new MongoDBConn<iUserInfo>().MongoClientFind(enumTables.USERINFO ,JsonParam,(ReturnData:JSON)=>{
+           let vReturnData :JSON = ReturnData;
+           res.json(ReturnData);
+       });
+    }
+
+    /**
+     * 功能说明：新增一笔数据到userinfo
+     * @param req 
+     * @param res 
+     * @param next 
+     */
+    @ExpressDecrorators.ALL()
+    static InsertOneUserInfo(req:express.Request,res:express.Response,next :express.NextFunction){
+        let objUserInfo = <iUserInfo>{}; 
+        
+        objUserInfo.USERID = req.query.userid;
+        objUserInfo.USERNAME = req.query.username.toUpperCase(); 
+        objUserInfo.USERPASSWORD = req.query.userpassword;
+        objUserInfo.EMAIL=req.query.username+"@gmail.com";
+        objUserInfo.COMPANYID =  req.query.companyid;
+        objUserInfo.COMPANYNAME = req.query.companyname;
+        objUserInfo.CREATETIME = new Date();
+        objUserInfo.CREATEUSER="system"
+        objUserInfo.REMARKS = "system";
+
+        let JsonParam = JSON.parse(JSON.stringify( objUserInfo));
+        new MongoDBConn().MOngoClientInsertOne(enumTables.USERINFO,JsonParam,(ReturnData:JSON)=>{
+            res.json(ReturnData);
+        });
+    }
 
 
+    /**
+     * 功能说明：删除一笔数据到userinfo
+     * @param req 
+     * @param res 
+     * @param next 
+     */
+    @ExpressDecrorators.ALL()
+    static DeleteOneUserInfo(req:express.Request,res:express.Response,next :express.NextFunction){
+        let objUserInfo = <iUserInfo>{}; 
+        objUserInfo.USERNAME = req.query.username.toUpperCase();  
+
+        let JsonParam = JSON.parse(JSON.stringify( objUserInfo));
+        new MongoDBConn().MOngoClientdeleteOne(enumTables.USERINFO,JsonParam,(ReturnData:JSON)=>{
+            res.json(ReturnData);
+        });
+    }
+
+    
     /**
      *功能说明： checked MongoDB 
      * api = http://localhost:8088/xm/MongoDBConn  
@@ -61,27 +126,6 @@ export class UserController{
             }
        ); 
     } 
-
-    /**
-     * api = http://localhost:8088/xm/getUserInfo     * 
-     * url = listen(listenPort,listenIP) + controller Path +  function Name 
-     * @param req 
-     * @param res 
-     * @param next 
-     */
-    @ExpressDecrorators.GET()
-    static FindUserInfo(req:express.Request,res:express.Response,next :express.NextFunction){
-        let iobjUserInfo:iUserInfo = <iUserInfo>{}; 
-        iobjUserInfo.key= req.query.username;
-        iobjUserInfo.USERNAME=  enumTables.regex + req.query.username.toUpperCase(); //enumTables.regex  设定栏位是否需要模糊查询
-
-       let JsonParam =   JSON.stringify(iobjUserInfo);
-       new MongoDBConn<iUserInfo>().MongoClientFind(enumTables.USERINFO ,JsonParam,(ReturnData:JSON)=>{
-           let vReturnData :JSON = ReturnData;
-           res.json(ReturnData);
-       });
-    }
-
     
     
 }

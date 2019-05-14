@@ -52,15 +52,6 @@ let UserController = class UserController {
         }
     }
     /**
-     *功能说明： checked MongoDB
-     * api = http://localhost:8088/xm/MongoDBConn
-     *  */
-    static ClientMongoDBConn(req, res, next) {
-        let returnMongoClientConn = new MongoDBConn_1.MongoDBConn().MongoClientConn((ReturnData) => {
-            res.json(ReturnData);
-        });
-    }
-    /**
      * api = http://localhost:8088/xm/getUserInfo     *
      * url = listen(listenPort,listenIP) + controller Path +  function Name
      * @param req
@@ -68,12 +59,57 @@ let UserController = class UserController {
      * @param next
      */
     static FindUserInfo(req, res, next) {
-        let iobjUserInfo = {};
-        iobjUserInfo.key = req.query.username;
-        iobjUserInfo.USERNAME = EnumTables_1.enumTables.regex + req.query.username.toUpperCase(); //enumTables.regex  设定栏位是否需要模糊查询
-        let JsonParam = JSON.stringify(iobjUserInfo);
+        let objUserInfo = {};
+        objUserInfo.key = req.query.username;
+        objUserInfo.USERNAME = EnumTables_1.enumTables.regex + req.query.username.toUpperCase(); //enumTables.regex  设定栏位是否需要模糊查询
+        let JsonParam = JSON.stringify(objUserInfo);
         new MongoDBConn_1.MongoDBConn().MongoClientFind(EnumTables_1.enumTables.USERINFO, JsonParam, (ReturnData) => {
             let vReturnData = ReturnData;
+            res.json(ReturnData);
+        });
+    }
+    /**
+     * 功能说明：新增一笔数据到userinfo
+     * @param req
+     * @param res
+     * @param next
+     */
+    static InsertOneUserInfo(req, res, next) {
+        let objUserInfo = {};
+        objUserInfo.USERID = req.query.userid;
+        objUserInfo.USERNAME = req.query.username.toUpperCase();
+        objUserInfo.USERPASSWORD = req.query.userpassword;
+        objUserInfo.EMAIL = req.query.username + "@gmail.com";
+        objUserInfo.COMPANYID = req.query.companyid;
+        objUserInfo.COMPANYNAME = req.query.companyname;
+        objUserInfo.CREATETIME = new Date();
+        objUserInfo.CREATEUSER = "system";
+        objUserInfo.REMARKS = "system";
+        let JsonParam = JSON.parse(JSON.stringify(objUserInfo));
+        new MongoDBConn_1.MongoDBConn().MOngoClientInsertOne(EnumTables_1.enumTables.USERINFO, JsonParam, (ReturnData) => {
+            res.json(ReturnData);
+        });
+    }
+    /**
+     * 功能说明：删除一笔数据到userinfo
+     * @param req
+     * @param res
+     * @param next
+     */
+    static DeleteOneUserInfo(req, res, next) {
+        let objUserInfo = {};
+        objUserInfo.USERNAME = req.query.username.toUpperCase();
+        let JsonParam = JSON.parse(JSON.stringify(objUserInfo));
+        new MongoDBConn_1.MongoDBConn().MOngoClientdeleteOne(EnumTables_1.enumTables.USERINFO, JsonParam, (ReturnData) => {
+            res.json(ReturnData);
+        });
+    }
+    /**
+     *功能说明： checked MongoDB
+     * api = http://localhost:8088/xm/MongoDBConn
+     *  */
+    static ClientMongoDBConn(req, res, next) {
+        let returnMongoClientConn = new MongoDBConn_1.MongoDBConn().MongoClientConn((ReturnData) => {
             res.json(ReturnData);
         });
     }
@@ -85,17 +121,29 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], UserController, "Chkuserinfo", null);
 __decorate([
-    ExpressDecrorators_1.ExpressDecrorators.ALL(),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object, Object, Function]),
-    __metadata("design:returntype", void 0)
-], UserController, "ClientMongoDBConn", null);
-__decorate([
     ExpressDecrorators_1.ExpressDecrorators.GET(),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object, Object, Function]),
     __metadata("design:returntype", void 0)
 ], UserController, "FindUserInfo", null);
+__decorate([
+    ExpressDecrorators_1.ExpressDecrorators.ALL(),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Object, Function]),
+    __metadata("design:returntype", void 0)
+], UserController, "InsertOneUserInfo", null);
+__decorate([
+    ExpressDecrorators_1.ExpressDecrorators.ALL(),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Object, Function]),
+    __metadata("design:returntype", void 0)
+], UserController, "DeleteOneUserInfo", null);
+__decorate([
+    ExpressDecrorators_1.ExpressDecrorators.ALL(),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Object, Function]),
+    __metadata("design:returntype", void 0)
+], UserController, "ClientMongoDBConn", null);
 UserController = __decorate([
     ExpressDecrorators_1.ExpressDecrorators.controller("xm")
 ], UserController);

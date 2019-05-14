@@ -1,5 +1,6 @@
 import express from "express";
 import {ActionMethod} from '../enum/ActionMethod';
+import bodyParser from 'body-parser';
 /**
  * 功能说明：路由选择器
  * 作者:ricky
@@ -21,9 +22,18 @@ export class ExpressDecrorators {
     private static setExpressRouter(target: any, path: string) {
         let controllerActions = ExpressDecrorators.controllerActions.get(target);
         if (controllerActions) {
+            //bodyParser 处理
+            let jsonParser = bodyParser.json();
+            let urlencodedParser = bodyParser.urlencoded({  
+                extended: true, // 扩展
+                limit: 1024 * 1024 * 2 // 前端最大可提交数据限制
+            });
+
             for (let i of controllerActions) {
                 console.log(i.method, `/${path}/${i.actionName}`);
                 ExpressDecrorators._app[i.method](`/${path}/${i.actionName}`, i.func);
+                // ExpressDecrorators._app[i.method](`/${path}/${i.actionName}`,urlencodedParser, i.func);
+                // ExpressDecrorators._app[i.method](`/${path}/${i.actionName}`,jsonParser, i.func); 
             }
         }
         ExpressDecrorators.controllerPath.delete(target);
