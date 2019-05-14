@@ -1,4 +1,4 @@
-import {userClass} from '../class/user';
+import {userClass} from '../class/UserClass';
 
 export interface iuser  {
     [userid:number] :userClass;

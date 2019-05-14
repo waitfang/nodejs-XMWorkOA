@@ -2,7 +2,7 @@
  * 功能说明：用一个切口，check user值* 
  */
  
-import {userClass} from '../class/user'; 
+import {userClass} from '../class/UserClass'; 
 import { stringify } from 'querystring';
 import {enumMessage} from  "../enum/EnumMessage";
   

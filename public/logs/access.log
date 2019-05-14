@@ -83,3 +83,6 @@
 [2019-05-13T17:56:15.310] [INFO] default - 127.0.0.1 - - "GET /xm/Chkuserinfo?userid=123&username=DEMO%20%20wait HTTP/1.1" 200 97 "" "PostmanRuntime/7.11.0"
 [2019-05-13T17:56:20.024] [INFO] default - 127.0.0.1 - - "GET /xm/ClientMongoDBConn HTTP/1.1" 200 35 "" "PostmanRuntime/7.11.0"
 [2019-05-13T17:56:25.405] [INFO] default - 127.0.0.1 - - "GET /xm/FindUserInfo?username= HTTP/1.1" 200 493 "" "PostmanRuntime/7.11.0"
+[2019-05-13T18:10:22.986] [INFO] default - 127.0.0.1 - - "GET /xm/FindUserInfo?username= HTTP/1.1" 200 493 "" "PostmanRuntime/7.11.0"
+[2019-05-13T18:10:31.882] [INFO] default - 127.0.0.1 - - "GET /xm/FindUserInfo?username=fff HTTP/1.1" 200 2 "" "PostmanRuntime/7.11.0"
+[2019-05-13T18:10:37.270] [INFO] default - 127.0.0.1 - - "GET /xm/FindUserInfo?username= HTTP/1.1" 200 493 "" "PostmanRuntime/7.11.0"

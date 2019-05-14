@@ -3,7 +3,7 @@
 //创建时间：2019/04/27
 
 import express, { Request, Response, NextFunction } from 'express';  
-import  {userClass} from './routes/class/user';
+import  {userClass} from './routes/class/UserClass';
 import {funGetuser, beforeChkuserinfo} from './routes/function/FunAopUser';
 let Rs  =  require('./routes/controllers/_resource');//引入配置档读取功能
 let app = express();

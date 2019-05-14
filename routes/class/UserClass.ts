@@ -4,7 +4,7 @@
  * 创建时间：2019/04/27
  */ 
 import { stringify } from "querystring"; 
-import {baseClass} from './base'
+import {baseClass} from './Base'
 import {beforeChkuserinfo}  from "../function/FunAopUser";  //引入aop ts  
 
 export class userClass extends baseClass{ 

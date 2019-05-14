@@ -2,7 +2,7 @@ import { ExpressDecrorators } from "../class/ExpressDecrorators";
 import express from 'express';
 import {enumMessage} from '../enum/EnumMessage';
 import { NextFunction } from "connect";
-import {userClass} from "../class/user"; 
+import {userClass} from "../class/UserClass"; 
 import { json } from "body-parser";
 import {MongoDBConn} from '../class/MongoDBConn';
 import {iUserInfo} from '../interface/iUserInfo';
