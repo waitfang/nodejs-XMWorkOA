@@ -21,6 +21,7 @@ export class UserController{
      * @param next 
      */
     @ExpressDecrorators.ALL()
+    //  @Auth(actionId=Enums.真人越南_删单)
     static Chkuserinfo(req:express.Request,res:express.Response,next : NextFunction){
         let user= new userClass(enumMessage.userInituserid,enumMessage.userInitusername);//需要实例化，所以先给定一个值
         if(req.query.userid !=null && req.query.username !=null){
@@ -64,7 +65,8 @@ export class UserController{
        let JsonParam =   JSON.stringify(objUserInfo);
        new MongoDBConn<iUserInfo>().MongoClientFind(enumTables.USERINFO ,JsonParam,(ReturnData:JSON)=>{
            let vReturnData :JSON = ReturnData;
-           res.json(ReturnData);
+        //    res.json(ReturnData);
+            res.render('index', { title: 'Express',ReturnData : JSON.stringify(ReturnData) });
        });
     }
 
@@ -121,10 +123,21 @@ export class UserController{
 
        let  returnMongoClientConn = new MongoDBConn<iUserInfo>().MongoClientConn(
            (ReturnData:JSON)=>{
-                res.json(ReturnData);
+                // res.json(ReturnData);
+                res.render('index', { title: 'Express',ReturnData : JSON.stringify(ReturnData) });
             }
        ); 
     } 
     
+
+    /**
+     *功能说明： checked MongoDB 
+     * api = http://localhost:8088/xm/MongoDBConn  
+     *  */
+    @ExpressDecrorators.ALL()
+    static index (req:express.Request,res:express.Response,next:NextFunction){
+
+        res.render('index', { title: 'Express' });
+    } 
     
 }

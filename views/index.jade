@@ -2,4 +2,13 @@ extends layout
 
 block content
   h1= title
-  p Welcome to #{title}
+  script(type="text.javascript" src="../public/javascripts/index.js")
+  p Welcome to #{title} 
+  
+  //-  onclick="windows.location.href='http://localhost:8088/'"    
+  a(href='/xm/ClientMongoDBConn', title='链接mongoDB') 链接mongoDB
+  br 
+  a(href='/xm/FindUserInfo?username', title='FindUserInfo') 查询用户信息
+  br 
+  br  
+  textarea(id="txtAreaReturn",style="height:500px;width:1000px;") #{ReturnData}

@@ -7,18 +7,18 @@
 import {enumMessage} from '../enum/EnumMessage';
 import {enumTables} from '../enum/EnumTables';
 import { error } from 'util';
-let MongoClient = require('mongodb').MongoClient;
-let url = "mongodb://localhost:27017/myMongoDB";
-
+let MongoClient = require('mongodb').MongoClient; 
 
 export class MongoDBConn<T> {
-    private client = MongoClient.connect(url);
+    private url = enumTables.mongodb;
+    private client = MongoClient.connect(this.url);
     private useNewUrlParser = { useNewUrlParser: true };
     private Return   ={ReturnData:enumMessage.ReturnDBData};
     private enumTables = enumTables;
+   
     /**CHECK  DB是否 链接成功 */
     MongoClientConn(callBack:Function){   
-        return  MongoClient.connect(url, this.useNewUrlParser, 
+        return  MongoClient.connect(this.url, this.useNewUrlParser, 
             (err: any, db: { close: () => void; }) => {
                 if (err) throw err;
                 console.log(this.Return);
@@ -37,7 +37,7 @@ export class MongoDBConn<T> {
      * @param callBack 回调函数
      */
     MongoClientFind(enumTables:string ,StrWhereParam:String, callBack:Function) {
-        return MongoClient.connect(url,this.useNewUrlParser,(err:Error,client:any)=>{
+        return MongoClient.connect(this.url,this.useNewUrlParser,(err:Error,client:any)=>{
             if (err) throw err;  
             let db = client.db(this.enumTables.myMongoDB); 
             let WhereParam =  this.FunWhereParam(StrWhereParam)
@@ -74,7 +74,7 @@ export class MongoDBConn<T> {
      * @param callBack 
      */
     MOngoClientInsertOne(enumTables:string,insertParam:JSON,callBack:Function){
-        return MongoClient.connect(url,this.useNewUrlParser,(err:Error,client:any)=>{
+        return MongoClient.connect(this.url,this.useNewUrlParser,(err:Error,client:any)=>{
             if(err) throw err;
             let db = client.db(this.enumTables.myMongoDB);
             db.collection(enumTables).insertOne(insertParam,(err :Error,ReturnData:any)=>{
@@ -93,7 +93,7 @@ export class MongoDBConn<T> {
      * @param callBack 
      */
     MOngoClientdeleteOne(enumTables:string,insertParam:JSON,callBack:Function){
-        return MongoClient.connect(url,this.useNewUrlParser,(err:Error,client:any)=>{
+        return MongoClient.connect(this.url,this.useNewUrlParser,(err:Error,client:any)=>{
             if(err) throw err;
             let db = client.db(this.enumTables.myMongoDB);
             db.collection(enumTables).deleteOne(insertParam,(err :Error,ReturnData:any)=>{

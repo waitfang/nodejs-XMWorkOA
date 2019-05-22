@@ -9,7 +9,7 @@ import {fsreadJsonFile,fsreadFileSync}  from  './routes/function/FunConfig';//�
 import {ExpressDecrorators} from './routes/class/ExpressDecrorators';
 import {UserController} from './routes/controllers/UserController';  
 import {ReadFileConfig} from './routes/class/ReadFileConfig';
-
+import  path from 'path';
 // fsreadJsonFile();//异步读取json配置
 // let mPromise =  ReadFileConfig.ReadFileConfig();
 // mPromise.then((data)=>{
@@ -26,8 +26,16 @@ let app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-// log4js.configure(log4jsConfigure)
-// app.use(log4js.connectLogger(log4js.getLogger("default"), { level: 'auto' }));
+
+log4js.configure(log4jsConfigure)
+app.use(log4js.connectLogger(log4js.getLogger("default"), { level: 'auto' }));
+
+console.log("path="+path.resolve())
+
+// view engine setup  链接到jade模板
+app.set('views', path.resolve()+ '/views');
+app.set('view engine', 'jade');
+
 
 ExpressDecrorators.app = app;
 
