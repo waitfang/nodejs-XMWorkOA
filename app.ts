@@ -30,8 +30,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 log4js.configure(log4jsConfigure)
 app.use(log4js.connectLogger(log4js.getLogger("default"), { level: 'auto' }));
 
-console.log("path="+path.resolve())
-
 // view engine setup  链接到jade模板
 app.set('views', path.resolve()+ '/views');
 app.set('view engine', 'jade');
