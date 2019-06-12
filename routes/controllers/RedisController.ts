@@ -22,14 +22,23 @@ export class RedisController{
                
                 //assertQueue 监听QueueName队列。
                 var ok = channel.assertQueue(salf.QueueName,{durable:false}).then(function(_qok){
-
+ 
                     //监听成功后，创建一个消费者。
-                    return channel.consume(salf.QueueName,function(msg:any){  
-                        
+                    return channel.consume(salf.QueueName,function(msg:any){   
                         //取消息列表中的数据，做逻辑处理。
-                        console.log('consume=='+ msg.content.toString());
+                        try {
+                            //认为异常，测试重新入队。
+                            if(JSON.parse(msg.content.toString()).USERNAME=="WAIT") var obj = JSON.parse(msg);
 
-                    },{noAck:true}); 
+                            console.log('consume msg=='+ msg.content.toString());
+                            channel.ack(msg);//清队列。
+                        } catch (error) {
+                            channel.nack(msg); //出现异常，重新入队列。
+                            //重新入队后，错误的msg写入log档，方便查看。
+                            
+                        } 
+
+                    },{noAck:false});  //noAck:true 不管是否成功，都清队列。  
                 });
                 
                 //监听完成后
