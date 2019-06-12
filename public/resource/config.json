@@ -1,6 +1,6 @@
 {
     "listenPort":8088,
-    "listenIP":"localhost",
+    "listenIP":"127.0.0.1",
     "return" : {
         "code":404,
         "message":"服务器无法回应!"

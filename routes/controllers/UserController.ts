@@ -7,6 +7,8 @@ import { json } from "body-parser";
 import {MongoDBConn} from '../class/MongoDBConn';
 import {iUserInfo} from '../interface/iUserInfo';
 import   {enumTables}    from '../enum/EnumTables'
+import {RedisController} from '../controllers/RedisController';
+import { any } from "bluebird";
 
 @ExpressDecrorators.controller("xm")
 export class UserController{
@@ -33,7 +35,7 @@ export class UserController{
                 
         //class to json 直接输出
         let JsonData =  userClass.getUserInfoJson(user);  
-
+ 
         if(user.userid ==enumMessage.outcode )
         {
             res.json(JSON.parse(JsonData));
@@ -63,8 +65,15 @@ export class UserController{
         objUserInfo.USERNAME=  enumTables.regex + req.query.username.toUpperCase(); //enumTables.regex  设定栏位是否需要模糊查询
 
        let JsonParam =   JSON.stringify(objUserInfo);
-       new MongoDBConn<iUserInfo>().MongoClientFind(enumTables.USERINFO ,JsonParam,(ReturnData:JSON)=>{
-           let vReturnData :JSON = ReturnData;
+       new MongoDBConn<iUserInfo>().MongoClientFind(enumTables.USERINFO ,JsonParam,(ReturnData:any)=>{
+           let vReturnData :any = ReturnData;  
+            //数据塞入队列中
+            var bufferData ;
+            for(var item in ReturnData){ 
+                bufferData = JSON.stringify(ReturnData[item]); 
+                //数据塞入队列中
+                new RedisController().rabbitmqQueue(bufferData);
+            };  
         //    res.json(ReturnData);
             res.render('index', { title: 'Express',ReturnData : JSON.stringify(ReturnData) });
        });
@@ -121,6 +130,10 @@ export class UserController{
     @ExpressDecrorators.ALL()
     static ClientMongoDBConn (req:express.Request,res:express.Response,next:NextFunction){
 
+        //队列中获取数据
+        new RedisController().rabbitmqConsume();
+
+        
        let  returnMongoClientConn = new MongoDBConn<iUserInfo>().MongoClientConn(
            (ReturnData:JSON)=>{
                 // res.json(ReturnData);
