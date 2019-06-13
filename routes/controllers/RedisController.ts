@@ -1,12 +1,9 @@
 import amqplib from 'amqplib'; 
 import log4js from 'log4js';
-
 /**
  * 功能说明：用来处理消息队列
  */
-
-export class RedisController{
-
+export class RedisController{ 
     private amqpUrl = 'amqp://admin:admin@172.16.31.229';
     private QueueName= 'QueueName';  
     // private connection = amqp.createConnection({url: "amqp://localhost"});
