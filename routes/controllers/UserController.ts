@@ -7,7 +7,7 @@ import { json } from "body-parser";
 import {MongoDBConn} from '../class/MongoDBConn';
 import {iUserInfo} from '../interface/iUserInfo';
 import   {enumTables}    from '../enum/EnumTables'
-import {RedisController} from '../controllers/RedisController';
+import {RebbitMQController} from '../controllers/RebbitMQController';
 import { any } from "bluebird";
 
 @ExpressDecrorators.controller("xm")
@@ -72,7 +72,7 @@ export class UserController{
             for(var item in ReturnData){ 
                 bufferData = JSON.stringify(ReturnData[item]); 
                 //数据塞入队列中
-                new RedisController().rabbitmqQueue(bufferData);
+                new RebbitMQController().rabbitmqQueue(bufferData);
             };  
         //    res.json(ReturnData);
             res.render('index', { title: 'Express',ReturnData : JSON.stringify(ReturnData) });
@@ -131,7 +131,7 @@ export class UserController{
     static ClientMongoDBConn (req:express.Request,res:express.Response,next:NextFunction){
 
         //队列中获取数据
-        new RedisController().rabbitmqConsume();
+        new RebbitMQController().rabbitmqConsume();
 
         
        let  returnMongoClientConn = new MongoDBConn<iUserInfo>().MongoClientConn(
