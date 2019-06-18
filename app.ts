@@ -33,12 +33,16 @@ app.use(log4js.connectLogger(log4js.getLogger("default"), { level: 'auto' }));
 
 // view engine setup  链接到jade模板
 app.set('views', path.resolve()+ '/views');
-app.set('view engine', 'jade');
+app.set('view engine', 'jade'); 
 
-
-ExpressDecrorators.app = app;
-
+ExpressDecrorators.app = app; 
+ 
 UserController; //引用路由页
-RedisController;
+RedisController;  
+
+//抛出异常，服务不要终止。
+process.on('uncaughtException',function(err){  
+    log4js.getLogger('errors').error(err.stack);//错误输错到log档
+}); //监听未捕获的异常
 
 app.listen(listenPort,listenIP); 

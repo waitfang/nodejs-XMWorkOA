@@ -1,6 +1,7 @@
 import express from "express";
 import {ActionMethod} from '../enum/ActionMethod';
 import bodyParser from 'body-parser';
+import { ok } from "assert";
 /**
  * 功能说明：路由选择器
  * 作者:ricky
@@ -10,10 +11,10 @@ export class ExpressDecrorators {
     private static _app: express.Express;
     static set app(value: express.Express) {
         ExpressDecrorators._app = value;
-        let keys = ExpressDecrorators.controllerPath.keys();
+        let keys = ExpressDecrorators.controllerPath.keys(); 
         for (let i of keys) {
             ExpressDecrorators.setExpressRouter(i, ExpressDecrorators.controllerPath.get(i)!);
-        }
+        } 
     };
 
     private static controllerPath: Map<any, string> = new Map<any, string>();
@@ -28,13 +29,14 @@ export class ExpressDecrorators {
                 extended: true, // 扩展
                 limit: 1024 * 1024 * 2 // 前端最大可提交数据限制
             });
-
+ 
             for (let i of controllerActions) {
                 console.log(i.method, `/${path}/${i.actionName}`);
                 ExpressDecrorators._app[i.method](`/${path}/${i.actionName}`, i.func);
                 // ExpressDecrorators._app[i.method](`/${path}/${i.actionName}`,urlencodedParser, i.func);
                 // ExpressDecrorators._app[i.method](`/${path}/${i.actionName}`,jsonParser, i.func); 
-            }
+            } 
+            
         }
         ExpressDecrorators.controllerPath.delete(target);
     }
@@ -44,13 +46,13 @@ export class ExpressDecrorators {
      * @param path 目录路径，例 "path" , "system/user"
      */
     static controller(path: string) {
-        return (target: any) => {
+        return (target: any) => { 
             if (!ExpressDecrorators._app) {
-                ExpressDecrorators.controllerPath.set(target, path);
+                ExpressDecrorators.controllerPath.set(target, path); 
             }
             else {
                 ExpressDecrorators.setExpressRouter(target, path);
-            }
+            }  
         }
     }
 
@@ -77,7 +79,7 @@ export class ExpressDecrorators {
                 controllerActions = [];
                 ExpressDecrorators.controllerActions.set(target, controllerActions);
             }
-            controllerActions.push({ method: method, actionName: name, func: descriptor.value });
+            controllerActions.push({ method: method, actionName: name, func: descriptor.value }); 
         }
     }
 }

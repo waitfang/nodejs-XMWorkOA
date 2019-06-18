@@ -15,15 +15,16 @@ export class RedisController{
     private static client :any =RedisController.Getclient();
 
     //启动redis server 
-    private static Getclient():any{
+    private static Getclient():void{ 
+        redis.createClient('redis://127.0.0.1:6379/0'); //服务未启动前创建连接，会抛出异常。
+
         //先启动redis服务
-        let redis_server = "D:\\devtools\\Redis\\Redis-x64-3.0.504\\redis.cmd";
-        let shell = {shell:redis_server};
-        child_process.execFile(redis_server,[],(err,data)=>{
-            console.log("child_process.exec"+data.toString());
-            RedisController.client = redis.createClient('redis://127.0.0.1:6379/0'); 
-        });  
-        return RedisController.client; 
+        // let redis_server = "D:\\devtools\\Redis\\Redis-x64-3.0.504\\redis.cmd";
+        // let shell = {shell:redis_server};
+        // child_process.execFile(redis_server,[],(err,data)=>{
+        //     console.log("child_process.exec"+data.toString());
+        //     RedisController.client = redis.createClient('redis://127.0.0.1:6379/0'); 
+        // });   
     } 
 
     // private static client = redis.createClient('redis://127.0.0.1:6379/0'); 
