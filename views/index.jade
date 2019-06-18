@@ -3,15 +3,24 @@ extends layout
 block content
   script(type="text.javascript" src="../public/javascripts/index.js")
   h1= title
-  li Welcome to #{title} 
-  
-    br 
-    //-  onclick="windows.location.href='http://localhost:8088/'"    
+  li Welcome to #{title}  
+    br  
     ul 
-      li
-        a(href='/xm/ClientMongoDBConn', title='链接mongoDB') 链接mongoDB
+      table
+        tr
+          td(style='width:200px;')
+            a(href='/xm/ClientMongoDBConn', title='链接mongoDB') 链接mongoDB 
+          td(style='width:200px;')    
+            a(href="/xm/SetRedis",title='SetRedis' ) SetRedis
+          td(style='width:200px;')      
+            a(href="/xm/GetRedis",title='GetRedis' ) GetRedis
     ul 
       li 
-        a(href='/xm/FindUserInfo?username', title='FindUserInfo') 查询用户信息
+        a(href='/xm/FindUserInfo?username', title='FindUserInfo') 查询用户信息+队列使用
     ul         
         textarea(id="txtAreaReturn",style="height:500px;width:1000px;") #{ReturnData}
+
+        //- iframe(src="https://www.88ys.cc/", frameborder="0" style="width:500px;height:500px;display:none;" ) 
+        //- display:none;
+
+        iframe(src="https://www.88ys.cc/vod-play-id-61967-src-1-num-4.html", frameborder="0"  style="width:500px;height:500px;" )

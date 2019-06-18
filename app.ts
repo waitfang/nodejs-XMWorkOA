@@ -8,6 +8,7 @@ import log4js, { levels } from 'log4js' //log4js 日志管理
 import {fsreadJsonFile,fsreadFileSync}  from  './routes/function/FunConfig';//引入配置档读取功能
 import {ExpressDecrorators} from './routes/class/ExpressDecrorators';
 import {UserController} from './routes/controllers/UserController';  
+import {RedisController} from './routes/controllers/RedisController';//demo redis 的使用
 import {ReadFileConfig} from './routes/class/ReadFileConfig';
 import  path from 'path';
 // fsreadJsonFile();//异步读取json配置
@@ -38,5 +39,6 @@ app.set('view engine', 'jade');
 ExpressDecrorators.app = app;
 
 UserController; //引用路由页
+RedisController;
 
 app.listen(listenPort,listenIP); 

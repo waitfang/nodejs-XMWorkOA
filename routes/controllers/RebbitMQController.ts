@@ -4,7 +4,7 @@ import log4js from 'log4js';
  * 功能说明：用来处理消息队列
  */
 export class RebbitMQController{
-    private amqpUrl = 'amqp://admin:admin@172.16.31.229';
+    private amqpUrl = 'amqp://admin:admin@localhost';
     private QueueName= 'QueueName'; 
     private logger =  log4js.getLogger('errors');//写log档    
     //消息队列消费者
