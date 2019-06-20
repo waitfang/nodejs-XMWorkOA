@@ -1,5 +1,8 @@
 body {
-  padding: 5px;
+  /* padding: 0px; */ 
+  margin: 0; 
+	padding: 0;
+	border: 0;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
@@ -26,4 +29,30 @@ a {
 #iframeContent { 
   width: 90%;
   height: 900px;
+}
+
+div{
+  text-align:left;
+  /* padding-left: 1px; */
+  /* padding: 2px;  */
+}
+.div{
+	/* background-color:#F00; */
+	overflow:auto;
+	height:900px;
+}
+.div>.divleft{ 
+	width:55%;
+	height:900px; 
+	background-color:rgb(180, 198, 206);
+  display:inline-block; 
+  float: left;
+}
+.div>.divright{ 
+	width:44%;
+	height:900px; 
+	background-color:rgb(247, 243, 243);
+  display:inline-block;
+  top: 0px;
+  float: right;
 }

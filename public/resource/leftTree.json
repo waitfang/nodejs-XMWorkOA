@@ -1,54 +1,65 @@
 {
     "zh_CN" :[
        {
-           "text":"权限管理",
+           "title":"权限管理",
+           "id":"10",
            "level":1,
            "sort":4,
-           "value":[
+           "children":[
                {
-                   "text":"角色管理",
+                   "title":"角色管理",
+                   "id":"101",
                    "level": 2,
                    "sort":41,
                    "path":"RoleAuth/Role/Init",
-                   "action":[ 
+                   "children":[ 
                        {
-                           "text": "查询",
+                           "title": "查询",
+                           "id":"1011",
                            "type": "search" 
                        },   
                        {
-                           "text": "新增",
+                           "title": "新增",
+                           "id":"1012",
                            "type": "edit"  
                        } ,
                        {
-                           "text": "修改",
+                           "title": "修改",
+                           "id":"1013",
                            "type": "edit"  
                        },
                        {
-                           "text": "删除",
+                           "title": "删除",
+                           "id":"1014",
                             "type": "edit"  
                        }  
                    ]
                },  
                {
-                "text":"人员管理",
+                "title":"人员管理",
+                "id":"102",
                 "level": 2,
                 "sort":41,
                 "path":"RoleAuth/auth/Init",
-                "action":[ 
+                "children":[ 
                     {
-                        "text": "查询",
+                        "title": "查询",
+                        "id":"1021",
                         "type": "search" 
                     },   
                     {
-                        "text": "新增",
+                        "title": "新增",
+                        "id":"1022",
                         "type": "edit"  
                     } ,
                     {
-                        "text": "修改",
+                        "title": "修改",
+                        "id":"1023",
                         "type": "edit"  
                     },
                     {
-                        "text": "删除",
+                        "title": "删除",
+                        "id":"1024",
                          "type": "edit"  
                     }  
                 ]
@@ -56,30 +67,36 @@
            ]  
        },
        {
-           "text":"会员管理",
+           "title":"会员管理",
+           "id":"20",
            "level":1,
            "sort":2,
-           "value":[
+           "children":[
                {
-                   "text":"会员设定",
+                   "title":"会员设定",
+                   "id":"201",
                    "level": 2,
                    "sort":21,
                    "path":"../admin/MatchSetting.html",
-                   "action":[ 
+                   "children":[ 
                        {
-                           "text": "查询",
+                           "title": "查询",
+                           "id":"2011",
                            "type": "search" 
                        },   
                        {
-                           "text": "新增",
+                           "title": "新增",
+                           "id":"2012",
                            "type": "edit"  
                        } ,
                        {
-                           "text": "修改",
+                           "title": "修改",
+                           "id":"2013",
                            "type": "edit"   
                        },
                        {
-                           "text": "删除",
+                           "title": "删除",
+                           "id":"2014",
                            "type": "edit"   
                        }  
                    ]

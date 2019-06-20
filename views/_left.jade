@@ -8,11 +8,11 @@ body
                 //- 第一层目录，暂时只设置两层目录
                 each val,key in Treedata  
                     li(class='layui-nav-item layui-nav-itemed')
-                        a(class="javascript:;" href="javascript:;") #{val.text}
+                        a(class="javascript:;" href="javascript:;") #{val.title}
 
-                        each valchild in val.value
+                        each valchild in val.children
                             dl(class='layui-nav-child')
-                                a(href="#{valchild.path}" target="iframeContent") #{valchild.text} 
+                                a(href="#{valchild.path}" target="iframeContent") #{valchild.title} 
 
 
 script layui.use('element', function(){ var element = layui.element; }); 
