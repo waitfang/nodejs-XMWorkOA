@@ -2,11 +2,14 @@
 //作者：Wait
 //创建时间：2019/04/27
 
-import express, { Request, Response, NextFunction } from 'express';
-import {enumMessage} from '../enum/EnumMessage';
+import express, { Request, Response, NextFunction } from 'express'; 
 import fs from 'fs';
 import { json } from 'body-parser';
+import {enumMessage} from '../enum/EnumMessage';
+import {EumnRedis} from '../enum/EumnRedis';
+import { RedisController } from '../controllers/RedisController';
 let resource =  "public\\resource\\config.json";//文本信息放入json档
+let leftTree = 'public/resource/leftTree.json';//功能菜单
 let config = '../../public/resource/config.json';
 var mResourceJson;
 let app = express();
@@ -22,6 +25,15 @@ export function fsreadJsonFile() :any {
                 console.log(mResourceJson.listenPort + "--" + mResourceJson.listenIP ); 
         });
     } 
+
+// 功能说明：leftTree读入到redis中
+export function fsreadTree() :any { 
+    return  fs.readFile(leftTree,function(err,data){
+            mResourceJson  = data.toString();
+            RedisController.client.set(EumnRedis.leftTree ,mResourceJson); 
+    });
+} 
+
 
 
 //同步读取

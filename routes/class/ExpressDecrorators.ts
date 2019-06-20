@@ -1,5 +1,5 @@
 import express from "express";
-import {ActionMethod} from '../enum/ActionMethod';
+import {ActionMethod} from '../enum/EnumActionMethod';
 import bodyParser from 'body-parser';
 import { ok } from "assert";
 /**

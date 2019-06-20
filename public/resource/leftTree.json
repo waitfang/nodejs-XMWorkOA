@@ -1,0 +1,90 @@
+{
+    "zh_CN" :[
+       {
+           "text":"权限管理",
+           "level":1,
+           "sort":4,
+           "value":[
+               {
+                   "text":"角色管理",
+                   "level": 2,
+                   "sort":41,
+                   "path":"RoleAuth/Role/Init",
+                   "action":[ 
+                       {
+                           "text": "查询",
+                           "type": "search" 
+                       },   
+                       {
+                           "text": "新增",
+                           "type": "edit"  
+                       } ,
+                       {
+                           "text": "修改",
+                           "type": "edit"  
+                       },
+                       {
+                           "text": "删除",
+                            "type": "edit"  
+                       }  
+                   ]
+               },  
+               {
+                "text":"人员管理",
+                "level": 2,
+                "sort":41,
+                "path":"RoleAuth/auth/Init",
+                "action":[ 
+                    {
+                        "text": "查询",
+                        "type": "search" 
+                    },   
+                    {
+                        "text": "新增",
+                        "type": "edit"  
+                    } ,
+                    {
+                        "text": "修改",
+                        "type": "edit"  
+                    },
+                    {
+                        "text": "删除",
+                         "type": "edit"  
+                    }  
+                ]
+            } 
+           ]  
+       },
+       {
+           "text":"会员管理",
+           "level":1,
+           "sort":2,
+           "value":[
+               {
+                   "text":"会员设定",
+                   "level": 2,
+                   "sort":21,
+                   "path":"../admin/MatchSetting.html",
+                   "action":[ 
+                       {
+                           "text": "查询",
+                           "type": "search" 
+                       },   
+                       {
+                           "text": "新增",
+                           "type": "edit"  
+                       } ,
+                       {
+                           "text": "修改",
+                           "type": "edit"   
+                       },
+                       {
+                           "text": "删除",
+                           "type": "edit"   
+                       }  
+                   ]
+               }  
+           ]  
+       }
+   ] 
+} 

@@ -12,18 +12,13 @@ import {ExpressDecrorators} from './routes/class/ExpressDecrorators';
 import {UserController} from './routes/controllers/UserController';  
 import {RedisController} from './routes/controllers/RedisController';//demo redis 的使用
 import { LoginController } from './routes/controllers/LoginController';
-// fsreadJsonFile();//异步读取json配置
-// let mPromise =  ReadFileConfig.ReadFileConfig();
-// mPromise.then((data)=>{
-//     let mResourceJson = data;
-// });
+import { RoleController } from './routes/controllers/RoleController';
+import { AuthController } from './routes/controllers/AuthController'; 
   
 let mResourceJson  = fsreadFileSync();//同步读取
-
 let listenIP = mResourceJson.listenIP; //监听ip和端口 "localhost";
 let listenPort=mResourceJson.listenPort;//8088; 
-let log4jsConfigure = "public\\resource\\log4js.json";//log4js 配置文件
- 
+let log4jsConfigure = "public\\resource\\log4js.json";//log4js 配置文件 
 let app = express(); 
 
 app.use(bodyParser.json());
@@ -37,11 +32,12 @@ app.set('views', path.resolve()+ '/views');
 app.set('view engine', 'jade'); 
 app.use(express.static('./public')); //加载html
 
-ExpressDecrorators.app = app; 
- 
+ExpressDecrorators.app = app;  
 UserController; //引用路由页
 RedisController;  
 LoginController;
+RoleController;
+AuthController;
 
 //抛出异常，服务不要终止。
 process.on('uncaughtException',function(err){  

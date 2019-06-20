@@ -1,3 +1,4 @@
 export enum EumnRedis {
-    hello=' hello world!'
+    hello=' hello world!',
+    leftTree='leftTree'
 }
