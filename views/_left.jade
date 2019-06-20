@@ -1,0 +1,22 @@
+head
+    link(rel="stylesheet", href="/javascripts/layui/css/layui.css") 
+    script(src="/javascripts/layui/layui.js")  
+body  
+    div(class='layui-side layui-bg-black' )
+        div(class='layui-side-scroll')
+            ul(class='layui-nav layui-nav-tree site-demo-nav' )
+                
+                li(class='layui-nav-item layui-nav-itemed')
+                    a(class="javascript:;" href="javascript:;") 开发工具
+                        span(class='layui-nav-more')
+                    dl(class='layui-nav-child')
+                        a(href="https://www.88ys.cc/" target="iframeContent") 调试预览
+
+                li(class='layui-nav-item layui-nav-itemed')
+                    a(class="javascript:;" href="javascript:;") 布局
+                        span(class='layui-nav-more')
+                    dl(class='layui-nav-child')
+                        a(href="demo") 栅格
+
+
+script layui.use('element', function(){ var element = layui.element; }); 

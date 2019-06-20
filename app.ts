@@ -6,11 +6,12 @@ import express, { Request, Response, NextFunction } from 'express';
 import bodyParser from 'body-parser' 
 import log4js, { levels } from 'log4js' //log4js 日志管理 
 import {fsreadJsonFile,fsreadFileSync}  from  './routes/function/FunConfig';//引入配置档读取功能
+import {ReadFileConfig} from './routes/class/ReadFileConfig';
+import  path from 'path';
 import {ExpressDecrorators} from './routes/class/ExpressDecrorators';
 import {UserController} from './routes/controllers/UserController';  
 import {RedisController} from './routes/controllers/RedisController';//demo redis 的使用
-import {ReadFileConfig} from './routes/class/ReadFileConfig';
-import  path from 'path';
+import { LoginController } from './routes/controllers/LoginController';
 // fsreadJsonFile();//异步读取json配置
 // let mPromise =  ReadFileConfig.ReadFileConfig();
 // mPromise.then((data)=>{
@@ -34,11 +35,13 @@ app.use(log4js.connectLogger(log4js.getLogger("default"), { level: 'auto' }));
 // view engine setup  链接到jade模板
 app.set('views', path.resolve()+ '/views');
 app.set('view engine', 'jade'); 
+app.use(express.static('./public')); //加载html
 
 ExpressDecrorators.app = app; 
  
 UserController; //引用路由页
 RedisController;  
+LoginController;
 
 //抛出异常，服务不要终止。
 process.on('uncaughtException',function(err){  

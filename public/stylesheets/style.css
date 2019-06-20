@@ -1,8 +1,29 @@
 body {
-  padding: 50px;
+  padding: 5px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
   color: #00B7FF;
+}
+
+#iframeTop { 
+  width: 100%;
+  height: 70px;
+  background-color:#393d49;
+  color:white;
+}   
+
+#iframeTop li{
+  color:#fff!important;
+}
+
+#iframeLeft { 
+  width: 10%;
+  height: 900px;
+  float: left;
+}  
+#iframeContent { 
+  width: 90%;
+  height: 900px;
 }
