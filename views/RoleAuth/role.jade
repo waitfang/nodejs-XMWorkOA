@@ -11,11 +11,11 @@ body
                 div(class="layui-form-item")    
                     label(class="layui-form-label") 角色名称
                     div(class="layui-input-inline")
-                        input(type="text" name="txtRoleName" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input")
+                        input(type="text" id="txtRoleName" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input")
                   
                     label(class="layui-form-label") 状态
                     div(class="layui-input-inline")
-                         select(name="drpState") 
+                         select(id="drpState") 
                             option(value="0") 启用
                             option(value="1") 停用 
             
@@ -26,13 +26,6 @@ body
                 button(type='button' class='layui-btn layui-btn-danger' id='butDel') 删除
             
             div 
-                table(class="layui-table")
-                    thead
-                        tr
-                        th(class="layui-table-cell laytable-cell-1-0-1") 角色编号 
-                        th(class="layui-table-cell laytable-cell-1-0-1") 角色名称
-                        th(class="layui-table-cell laytable-cell-1-0-1") 游戏类型 
-                        th(class="layui-table-cell laytable-cell-1-0-1") 状态
                 div(id="GridList") 
 
         div(class="divright")
