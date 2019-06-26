@@ -43,9 +43,9 @@ body{
 .loginbox{
     position: absolute;
     right:33.5%;
-    /* left:60.5%; */
-    /* top: 39.5%;width: 240px; */
-    top: 30.5%;width: 240px;
+    left:60.5%;
+    top: 39.5%;width: 240px;
+    /* top: 30.5%;width: 240px; */
 }
 
 .loginbox input[type=text]{

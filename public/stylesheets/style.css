@@ -42,15 +42,29 @@ div{
 	height:900px;
 }
 .div>.divleft{ 
-	width:55%;
+	width:54%;
 	height:900px; 
 	background-color:rgb(180, 198, 206);
   display:inline-block; 
   float: left;
 }
 .div>.divright{ 
-	width:44%;
+	width:45%;
 	height:900px; 
+	background-color:rgb(247, 243, 243);
+  display:inline-block;
+  top: 0px;
+  float: right;
+}
+
+.div>.contentleft{ 
+	width:45%;  
+	background-color:rgb(247, 243, 243);
+  display:inline-block; 
+  float: left;
+}
+.div>.contentright{ 
+	width:54%; 
 	background-color:rgb(247, 243, 243);
   display:inline-block;
   top: 0px;

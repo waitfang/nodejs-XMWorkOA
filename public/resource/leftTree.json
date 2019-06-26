@@ -5,12 +5,14 @@
            "id":"10",
            "level":1,
            "sort":4,
+           "spread": true,
            "children":[
                {
                    "title":"角色管理",
                    "id":"101",
                    "level": 2,
                    "sort":41,
+                   "spread": true,
                    "path":"RoleAuth/Role/Init",
                    "children":[ 
                        {
@@ -71,6 +73,7 @@
            "id":"20",
            "level":1,
            "sort":2,
+           "spread": true,
            "children":[
                {
                    "title":"会员设定",

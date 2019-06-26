@@ -86,7 +86,7 @@ export class MongoDBConn<T> {
     }
 
 
-        /**
+    /**
      * 功能说明：删除一笔数据
      * @param enumTables 
      * @param insertParam 
@@ -97,6 +97,56 @@ export class MongoDBConn<T> {
             if(err) throw err;
             let db = client.db(this.enumTables.myMongoDB);
             db.collection(enumTables).deleteOne(insertParam,(err :Error,ReturnData:any)=>{
+                if(err) throw err;
+                callBack(ReturnData); 
+            })
+            client.close();
+        });
+    }
+
+    /**
+     * 功能说明：删除多笔数据 deleteMany、deleteOne
+     * @param enumTables 
+     * @param insertParam 
+     * @param callBack 
+     */
+    MOngoClientdelete(enumTables:string,insertParam:JSON,callBack:Function){
+        return MongoClient.connect(this.url,this.useNewUrlParser,(err:Error,client:any)=>{
+            if(err) throw err;
+            let db = client.db(this.enumTables.myMongoDB);
+            db.collection(enumTables).deleteMany(insertParam,(err :Error,ReturnData:any)=>{
+                if(err) throw err;
+                callBack(ReturnData); 
+            })
+            client.close();
+        });
+    }
+
+    /**
+     * 功能说明：修改数据
+     * @param enumTables 
+     * @param insertParam 
+     * @param callBack 
+     */
+    MOngoClientupdateOne(enumTables:string,whereStr:JSON,setParam:JSON,callBack:Function){
+        return MongoClient.connect(this.url,this.useNewUrlParser,(err:Error,client:any)=>{
+            if(err) throw err;
+            let db = client.db(this.enumTables.myMongoDB);
+            var updateStr = {$set:setParam};
+            db.collection(enumTables).updateOne(whereStr,updateStr,(err :Error,ReturnData:any)=>{
+                if(err) throw err;
+                callBack(ReturnData); 
+            })
+            client.close();
+        });
+    }
+
+    MOngoClientupdateMany(enumTables:string,whereStr:JSON,setParam:JSON,callBack:Function){
+        return MongoClient.connect(this.url,this.useNewUrlParser,(err:Error,client:any)=>{
+            if(err) throw err;
+            let db = client.db(this.enumTables.myMongoDB);
+            var updateStr = {$set:setParam};
+            db.collection(enumTables).updateMany(whereStr,updateStr,(err :Error,ReturnData:any)=>{
                 if(err) throw err;
                 callBack(ReturnData); 
             })
