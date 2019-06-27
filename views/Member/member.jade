@@ -8,7 +8,8 @@ body
     div(class="div") 
         div
             form(class="layui-form layui-form-pane")
-                div(class="layui-form-item")    
+                div(class="layui-form-item")   
+                     
                     label(class="layui-form-label") 账号
                     div(class="layui-input-inline")
                         input(type="text" id="txtUSERID" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input")
@@ -16,7 +17,11 @@ body
                     label(class="layui-form-label") 名称
                     div(class="layui-input-inline")
                         input(type="text" id="txtUSERNAME" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input") 
-                                         
+                 
+                    label(class="layui-form-label") 代理账号
+                    div(class="layui-input-inline")
+                        input(type="text" id="txtAGENT" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input") 
+                                      
                     label(class="layui-form-label") 状态
                     div(class="layui-input-inline")
                          select(id="drpState") 
@@ -26,9 +31,8 @@ body
             div
                 button(type='button' class='layui-btn' id='butSearch') 查询
                 button(type='button' class='layui-btn layui-btn-normal' id='butAdd') 新增
-                button(type='button' class='layui-btn layui-btn-danger' id='butDel') 单笔删除
-                button(type='button' class='layui-btn layui-btn-warm' id='butUserToRole') 角色分配
+                button(type='button' class='layui-btn layui-btn-danger' id='butDel') 删除
             
-            div
+            div 
                 div(id="GridList") 
     

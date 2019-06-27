@@ -11,9 +11,10 @@ import  path from 'path';
 import {ExpressDecrorators} from './routes/class/ExpressDecrorators';
 import {UserController} from './routes/controllers/UserController';  
 import {RedisController} from './routes/controllers/RedisController';//demo redis 的使用
-import { LoginController } from './routes/controllers/LoginController';
-import { RoleController } from './routes/controllers/RoleController';
-import { AuthController } from './routes/controllers/AuthController'; 
+import {LoginController} from './routes/controllers/LoginController';
+import {RoleController } from './routes/controllers/RoleController';
+import {AuthController } from './routes/controllers/AuthController'; 
+import {MemberController} from './routes/controllers/MemberController';
   
 let mResourceJson  = fsreadFileSync();//同步读取
 let listenIP = mResourceJson.listenIP; //监听ip和端口 "localhost";
@@ -38,6 +39,7 @@ RedisController;
 LoginController;
 RoleController;
 AuthController;
+MemberController;
 
 //抛出异常，服务不要终止。
 process.on('uncaughtException',function(err){  

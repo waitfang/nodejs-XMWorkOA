@@ -80,7 +80,7 @@
                    "id":"201",
                    "level": 2,
                    "sort":21,
-                   "path":"../admin/MatchSetting.html",
+                   "path":"Member/member/Init",
                    "children":[ 
                        {
                            "title": "查询",

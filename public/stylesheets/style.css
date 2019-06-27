@@ -44,7 +44,8 @@ div{
 .div>.divleft{ 
 	width:54%;
 	height:900px; 
-	background-color:rgb(180, 198, 206);
+  /* background-color:rgb(180, 198, 206); */
+  background-color:rgb(247, 243, 243);
   display:inline-block; 
   float: left;
 }
@@ -69,4 +70,11 @@ div{
   display:inline-block;
   top: 0px;
   float: right;
+}
+
+.div>.table>tbody>tr>td{
+  text-align:center;
+}
+.div>.table>thead:first-child>tr:first-child>th{
+  text-align:center;
 }

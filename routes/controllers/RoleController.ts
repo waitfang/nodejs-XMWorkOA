@@ -34,7 +34,7 @@ export class RoleController{
                 res.json({"Griddata":'init'}); 
                 break;
             case "ajaxInitGrid" ://初始化Grid数据
-                RoleController.InitGriddata(req,res,next);
+                new RoleController().InitGriddata(req,res,next);
                 break;
             case "ajaxinsertRoletoFun" ://insert 角色功能
                 RoleController.InsertRoletoFun(req,res,next);
@@ -68,7 +68,7 @@ export class RoleController{
     }
 
     //初始化角色数据
-    private static InitGriddata(req:express.Request,res:express.Response,next:NextFunction):void{  
+    InitGriddata(req:express.Request,res:express.Response,next:NextFunction):void{  
         let objRoleToFunction = <iRole>{}; 
         objRoleToFunction.ROLEID= req.query.roleid;//初始化查所有的，所以不需要条件。    
         let JsonParam =   JSON.stringify(objRoleToFunction);

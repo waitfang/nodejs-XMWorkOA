@@ -1,5 +1,5 @@
 export interface iUserInfo extends iBase {
-    USERID :number;
+    USERID :string;
     USERNAME:string;
     USERPASSWORD:string;
     EMAIL:string;
@@ -8,4 +8,6 @@ export interface iUserInfo extends iBase {
     CREATETIME:Date;
     CREATEUSER:string;
     REMARKS:string;
+    STATE:String; 
+    TELEPHONE:number;
 }
