@@ -1,5 +1,6 @@
-var table, layer; 
+var table, layer,form; 
 var loadindex; //进度条
+var mROLEID;//记录当前行的角色编号
 $(function(){
     Grid.init([]);
     
@@ -15,8 +16,8 @@ var page={
   
 var Grid = {
     init:function(Griddata){
-      layui.use(['table'], function(){
-        table = layui.table
+      layui.use(['table','form'], function(){
+        table = layui.table,form = layui.form
         ,layer = layui.layer ;
         table.render({
           elem: '#GridList'
@@ -37,19 +38,34 @@ var Grid = {
         Grid.tableRowClick(table); 
 
         loadindex = layer.load(0); 
+
+        //监听指定开关
+        form.on('switch(switchTest)', function(data){ 
+          var json={};
+          json.USERID = $("#txtUSERID").val();//账号
+          json.ROLEID =mROLEID;//角色编号
+          if(this.checked)
+            Pagajax.Get('ajaxAddUserToRole',json);
+          else
+            Pagajax.Get('ajaxDelUserToRole',json);
+          layer.tips((this.checked ? '授权' : '取消'), data.othis)
+        });
+
       });
     },
     formartSTATE:function(ROLESTATE){
-      let state ='启用';
+      let state ='<input type="checkbox" name="close" lay-skin="switch" lay-filter="switchTest"  lay-text="授权|取消">';
       if(ROLESTATE==1)
-        state ='停用'; 
-      return state
+        state ='<input type="checkbox" checked="" name="open" lay-skin="switch" lay-filter="switchTest" lay-text="授权|取消">'; 
+        
+      return state;
     },
     tableRowClick:function(table){
         //监听行单击事件（单击事件为：rowDouble）
         table.on('row', function(obj){ 
             //标注选中样式
             obj.tr.addClass('layui-table-click').siblings().removeClass('layui-table-click');
+            mROLEID = obj.data.ROLEID;
         }); 
         
     }

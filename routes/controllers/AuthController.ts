@@ -7,6 +7,7 @@ import { enumTables } from '../enum/EnumTables';
 import { iUserInfo } from '../interface/iUserInfo';
 import { RoleController } from './RoleController';
 import { iRole } from '../interface/iRole';
+import { iUserToRole } from '../interface/iUserToRole';
 
 /**
  * 功能说明：权限管理
@@ -45,6 +46,12 @@ export class AuthController{
                 break;
             case "ajaxInitGrid"://获取角色列表
                 AuthController.InitRoleGriddata(req,res,next);
+                break;
+            case "ajaxAddUserToRole"://新增人员角色对照档
+                AuthController.InsertUserToRoleinfo(req,res,next);
+                break;
+            case "ajaxDelUserToRole"://删除人员角色对照档
+                AuthController.DelUserToRoleinfo(req,res,next);
                 break;
         }
     }
@@ -96,6 +103,26 @@ export class AuthController{
         new MongoDBConn<iUserInfo>().MOngoClientdelete(enumTables.USERINFO,JsonParam,(ReturnData:any)=>{
             res.json({"ReturnData":"删除完成！"}); 
         });
+    }
+
+    //新增人员角色对照档
+    private static InsertUserToRoleinfo(req:express.Request,res:express.Response,next:NextFunction){
+        let objiUserToRole = <iUserToRole>{}; 
+        objiUserToRole.ROLEID= req.query.data.ROLEID==null ? "0" :  req.query.data.ROLEID;    
+        objiUserToRole.USERID= req.query.data.USERID;   
+        let JsonParam =  JSON.parse(JSON.stringify(objiUserToRole));
+        new MongoDBConn<iUserToRole>().MOngoClientInsertOne(enumTables.USERTOROLE,JsonParam,(ReturnData:any)=>{
+            res.json({"ReturnData":"新增完成！"}); 
+        }); 
+    }
+    private static DelUserToRoleinfo(req:express.Request,res:express.Response,next:NextFunction){
+        let objiUserToRole = <iUserToRole>{}; 
+        objiUserToRole.ROLEID= req.query.data.ROLEID==null ? "0" :  req.query.data.ROLEID;    
+        objiUserToRole.USERID= req.query.data.USERID;   
+        let JsonParam =  JSON.parse(JSON.stringify(objiUserToRole));
+        new MongoDBConn<iUserToRole>().MOngoClientdelete(enumTables.USERTOROLE,JsonParam,(ReturnData:any)=>{
+            res.json({"ReturnData":"删除完成！"}); 
+        }); 
     }
 
 
