@@ -32,14 +32,14 @@ $(function(){
 //ajax Post
 var Pagajax = {
   Get: function (action, data) {
-      var ParamsDat=Pagajax.ParamsData(action,data);  
-      if (ParamsDat == false) return;
+      var ParamsData=Pagajax.ParamsData(action,data);  
+      if (ParamsData == false) return;
       $.ajax({
           url: 'AjaxInit',
           dataType: "json",//返回json格式的数据
           type: 'get',
           async: false,//同步，有返回值再执行后面的js
-          data: ParamsDat,
+          data: ParamsData,
           datadataType: 'json',
           success: function (objList) {   
             Pagajax.backDate(action,objList);

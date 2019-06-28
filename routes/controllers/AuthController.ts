@@ -8,12 +8,13 @@ import { iUserInfo } from '../interface/iUserInfo';
 import { RoleController } from './RoleController';
 import { iRole } from '../interface/iRole';
 import { iUserToRole } from '../interface/iUserToRole';
+import { BaseController } from './BaseController';
 
 /**
  * 功能说明：权限管理
  */
 @ExpressDecrorators.controller(EnumLeftTree.auth)
-export class AuthController{
+export class AuthController extends BaseController{
 
     //初始化页面
     @ExpressDecrorators.ALL()

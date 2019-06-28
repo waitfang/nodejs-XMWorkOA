@@ -9,16 +9,18 @@ import { enumTables } from '../enum/EnumTables';
 import { iRoleToFunction } from '../interface/iRoleToFunction';
 import { iRole } from '../interface/iRole';
 import { any } from 'bluebird';
+import { BaseController } from './BaseController';
 
 /**
  * 功能说明：角色管理
  */
 @ExpressDecrorators.controller(EnumLeftTree.Role)
-export class RoleController{
+export class RoleController extends BaseController{
 
     //初始化页面
     @ExpressDecrorators.ALL()
     static Init(req:express.Request,res:express.Response,next:NextFunction){
+        let UserInfo = BaseController.getUserinfo();//获取登陆者信息。
         res.render('RoleAuth/role');
     } 
 
